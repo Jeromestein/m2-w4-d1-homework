@@ -148,4 +148,20 @@ footer {
     padding: 5px 15px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+/* Food image styles */
+.food-image-container {
+    margin-bottom: 1rem;
+}
+
+.food-image {
+    border: 0.5rem solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.food-image:hover {
+    transform: scale(1.03);
 } 
