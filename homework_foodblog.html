@@ -90,25 +90,27 @@
     
     <!-- Author Modal Template -->
     <script type="text/x-template" id="author-modal-template">
-        <div class="modal d-block" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content bg-dark text-white">
-                    <div class="modal-header border-0">
-                        <h5 class="modal-title">{{ authorData.name }}</h5>
-                        <button type="button" class="close text-white" @click="$emit('close')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-2"><strong>Foodie Level: {{ authorData.foodieLevel }}</strong></div>
-                        <p><strong>Bio:</strong><br>{{ authorData.bio }}</p>
-                    </div>
-                    <div class="modal-footer border-0">
-                        <button type="button" class="btn btn-outline-light" @click="$emit('close')">Close</button>
+        <div class="modal-wrapper">
+            <div class="modal d-block" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content bg-dark text-white">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title">{{ authorData.name }}</h5>
+                            <button type="button" class="close text-white" @click="$emit('close')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-2"><strong>Foodie Level: {{ authorData.foodieLevel }}</strong></div>
+                            <p><strong>Bio:</strong><br>{{ authorData.bio }}</p>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn btn-outline-light" @click="$emit('close')">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-backdrop show"></div>
+            <div class="modal-backdrop show" @click="$emit('close')"></div>
         </div>
     </script>
 
@@ -149,6 +151,22 @@
             template: '#author-modal-template',
             props: {
                 authorData: Object
+            },
+            mounted() {
+                // Add keyboard event listener for Escape key
+                document.addEventListener('keydown', this.handleKeyDown);
+            },
+            beforeDestroy() {
+                // Remove event listener when component is destroyed
+                document.removeEventListener('keydown', this.handleKeyDown);
+            },
+            methods: {
+                handleKeyDown(e) {
+                    // Close modal when Escape key is pressed
+                    if (e.key === 'Escape') {
+                        this.$emit('close');
+                    }
+                }
             }
         });
         
