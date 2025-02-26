@@ -18,14 +18,17 @@
     <div id="app">
         <div class="container-fluid p-0">
             <div class="row no-gutters">
-                <!-- Left sidebar -->
-                <div class="col-md-4" id="leftside"></div>
+                <!-- Left sidebar - force to always be 30% width -->
+                <div class="col-4" id="leftside"></div>
                 
-                <!-- Right side with content -->
-                <div class="col-md-8" id="rightside">
+                <!-- Right side with content - force to always be 70% width -->
+                <div class="col-8" id="rightside">
                     <div class="content-container" id="container">
                         <header class="mb-4">
-                            <span>{{ title }}</span>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>{{ title }}</span>
+                                <nav-menu :items="navItems"></nav-menu>
+                            </div>
                         </header>
 
                         <main>
@@ -129,12 +132,39 @@
         </div>
     </script>
 
+    <!-- 在其他模板之后添加导航组件模板 -->
+    <script type="text/x-template" id="nav-menu-template">
+        <nav class="navbar navbar-expand navbar-light">
+            <button class="navbar-toggler d-md-none mb-2" type="button" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav">
+                    <li v-for="(item, index) in items" :key="index" class="nav-item">
+                        <a class="nav-link" :href="item.url">{{ item.text }}</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </script>
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
 
     <script>
+        // Local components registration in Vue instance
+        const NavMenu = {
+            template: '#nav-menu-template',
+            props: {
+                items: {
+                    type: Array,
+                    required: true
+                }
+            }
+        };
+
         // Define the Food Image component
         Vue.component('food-image', {
             template: '#food-image-template',
@@ -190,7 +220,18 @@
         // Create Vue instance
         new Vue({
             el: '#app',
+            components: {
+                'nav-menu': NavMenu
+            },
             data: {
+                // Add navigation items data
+                navItems: [
+                    { text: 'Home', url: '#' },
+                    { text: 'Recipes', url: '#' },
+                    { text: 'Lifestyles', url: '#' },
+                    { text: 'Videos', url: '#' },
+                    { text: 'About', url: '#' }
+                ],
                 title: 'Food Blog',
                 commentTitle: 'Comments',
                 showModal: false,
