@@ -7,150 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family:Arial, Helvetica, sans-serif;
-        }
-        #leftside {
-            float:left;
-            width: 30%;
-            min-height: 1200px;
-            background-color:rgb(77, 192, 154);
-        }
-        #rightside {
-            float:left;
-            width: 70%;
-            min-height: 1200px;
-            background-color:rgb(238, 226, 192);
-            position:relative;
-        }
-        #container {
-            background-color:rgba(255, 255, 255, 0.85);
-            position: absolute;
-            top: 15%;
-            left: 15%;
-            min-width: 1100px;
-            min-height: 1050px;
-            border-radius: 0.7em;
-        }
-        header {
-            height: 50px;
-            background-color:rgba(231, 229, 229, 0.5);
-            font-size: 2.75em;
-            padding:0.5em;
-            color:rgb(216, 150, 7);
-        }
-        header span {
-            font-family: 'Sacramento', cursive;
-        }
-        main {
-            position: relative;
-        }
-        main h2 {
-            position: absolute;
-            left: 20%;
-            top: 30px;
-            margin: 25px 0 200px 50px;
-            color:rgb(60, 190, 160);
-            text-transform: uppercase;
-        }
-        main #photos img {
-            margin: 0.75em;
-            border: 0.85em solid rgb(255, 255, 255);
-        }
-        section#blogposts {
-            position: absolute;
-            left: 20%;
-            top: 70px;
-            padding: 50px;
-        }
-        main .post {
-            margin: 25px;
-            padding: 25px;
-            border: 2px solid rgba(83, 78, 58, 0.6);
-            border-radius: 0.5em;
-        }
-        footer {
-            position: absolute;
-            bottom: 0;
-            height: 50px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.85em;
-        }
-        
-        /* New styles for profile and modal */
-        .post-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .profile-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        .author-info {
-            color: #666;
-        }
-        .reply {
-            margin-left: 10px;
-            color: #4DC09A;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        /* Modal styles */
-        .author-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 400px;
-            max-width: 80%;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: #666;
-        }
-        .modal-header {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        .modal-body p {
-            margin: 10px 0;
-        }
-        .foodie-level {
-            display: inline-block;
-            background-color: #4DC09A;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="app">
@@ -212,10 +69,13 @@
                 <button class="close-btn" @click="$emit('close')">×</button>
                 <div class="modal-header">
                     <h3>{{ authorData.name }}</h3>
-                    <span class="foodie-level">{{ authorData.foodieLevel }}</span>
+                    <div class="foodie-level">Foodie Level: {{ authorData.foodieLevel }}</div>
                 </div>
                 <div class="modal-body">
-                    <p><strong>Bio:</strong> {{ authorData.bio }}</p>
+                    <p><strong>Bio:</strong><br>{{ authorData.bio }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="close-button" @click="$emit('close')">Close</button>
                 </div>
             </div>
         </div>
