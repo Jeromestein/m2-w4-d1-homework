@@ -1,72 +1,75 @@
+/* Custom fonts */
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
-#leftside {
-    float: left;
-    width: 30%;
-    min-height: 1200px;
-    background-color: rgb(77, 192, 154);
+
+/* Custom header with decorative font */
+header span {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.75rem;
+    color: rgb(216, 150, 7);
 }
+
+/* Layout colors and backgrounds */
+#leftside {
+    background-color: rgb(77, 192, 154);
+    min-height: 100vh;
+}
+
 #rightside {
-    float: left;
-    width: 70%;
-    min-height: 1200px;
     background-color: rgb(238, 226, 192);
+    min-height: 100vh;
     position: relative;
 }
-#container {
+
+.content-container {
     background-color: rgba(255, 255, 255, 0.85);
     position: absolute;
     top: 15%;
-    left: 15%;
-    min-width: 1100px;
-    min-height: 1050px;
-    border-radius: 0.7em;
+    left: 10%;
+    width: 85%;
+    border-radius: 0.7rem;
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
+
+/* Header styling */
 header {
-    height: 50px;
+    padding: 1rem;
     background-color: rgba(231, 229, 229, 0.5);
-    font-size: 2.75em;
-    padding: 0.5em;
-    color: rgb(216, 150, 7);
+    border-radius: 0.5rem;
 }
-header span {
-    font-family: 'Sacramento', cursive;
-}
-main {
-    position: relative;
-}
+
+/* Comment section title */
 main h2 {
-    position: absolute;
-    left: 20%;
-    top: 30px;
-    margin: 25px 0 200px 50px;
     color: rgb(60, 190, 160);
     text-transform: uppercase;
 }
-main #photos img {
-    margin: 0.75em;
-    border: 0.85em solid rgb(255, 255, 255);
+
+/* Photo styling */
+#photos img {
+    border: 0.5rem solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
-section#blogposts {
-    position: absolute;
-    left: 20%;
-    top: 70px;
-    padding: 50px;
+
+/* Profile image styling */
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
 }
-main .post {
-    margin: 25px;
-    padding: 25px;
-    border: 2px solid rgba(83, 78, 58, 0.6);
-    border-radius: 0.5em;
-}
+
+/* Footer styling */
 footer {
-    position: absolute;
-    bottom: 0;
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    font-size: 0.85em;
+    margin-top: 2rem;
+    padding: 1rem;
+    font-size: 0.85rem;
+}
+
+/* Custom modal backdrop - used with Bootstrap modal */
+.modal-backdrop {
+    background-color: rgba(0,0,0,0.8);
 }
 
 /* Profile styles */
@@ -74,13 +77,6 @@ footer {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
-.profile-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
 }
 .author-info {
     color: #666;
